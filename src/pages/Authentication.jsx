@@ -1,10 +1,13 @@
-import { useContext, useEffect } from "react";
+import { useContext} from "react";
 import { firebaseContext } from "contexts/FirebaseProvider";
 import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
 import DefaultLayout from "layouts/Default";
+import { useHistory } from "react-router-dom";
 
 export default function Authentication(props) {
-  let { firebase } = useContext(firebaseContext);
+  let { firebase, user } = useContext(firebaseContext);
+  let history = useHistory();
+  if (user) history.push("/");
   let uiConfig = {};
   if (firebase) {
     uiConfig = {
@@ -16,7 +19,6 @@ export default function Authentication(props) {
       },
     };
   }
-
   return (
     <DefaultLayout>
       <div className="h-100 d-flex align-items-center justify-content-center">
