@@ -9,7 +9,6 @@ export default function ({ children }) {
   const [notifications, setNotifcations] = useState([]);
 
   function pushNotification(notification) {
-    debugger;
     let notificationCP = [...notifications, notification];
     setNotifcations(notificationCP);
     setTimeout(() => {

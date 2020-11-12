@@ -1,5 +1,7 @@
 import { createContext, useEffect, useState } from "react";
 import Firebase from "firebase";
+import firebaseConfig from "settings/firebase";
+
 export const firebaseContext = createContext({ app: null, user: null });
 export default function FirebaseProvider(props) {
   const [firebase, setFireBase] = useState(Firebase);
@@ -7,16 +9,7 @@ export default function FirebaseProvider(props) {
 
   useEffect(() => {
     if (firebase.apps && !firebase.apps.length) {
-      firebase.initializeApp({
-        apiKey: "",
-        authDomain: "",
-        databaseURL: "",
-        projectId: "",
-        storageBucket: "",
-        messagingSenderId: "",
-        appId: "1:892426657062:web:9e4713f1526a632db435e7",
-        measurementId: "G-KMRYJ6K650",
-      });
+      firebase.initializeApp(firebaseConfig);
       firebase.auth().onAuthStateChanged(function (user) {
         if (user) {
           setUser(user);

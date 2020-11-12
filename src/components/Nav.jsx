@@ -42,7 +42,6 @@ export default function Navigation(props) {
               <button
                 className="btn btn-primary"
                 onClick={() => {
-                  debugger;
                   firebase
                     .auth()
                     .signOut()
